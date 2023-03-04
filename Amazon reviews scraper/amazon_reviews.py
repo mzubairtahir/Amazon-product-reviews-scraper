@@ -3,11 +3,20 @@ from bs4 import BeautifulSoup
 import requests as re
 import pandas as pd
 
+your_url=f'' #here you will insert your link of that products reviews page . You will insert here link of seond page of your reviews that contains page number in link. (not first page)
+numer_of_pages=10 # you can change number of pages.
 
+'''
+your link should like this:
+
+https://www.amazon.com/BENGOO-G9000-Controller-Cancelling-Headphones/product-reviews/B01H6GUCCQ/ref=cm_cr_arp_d_paging_btm_2?ie=UTF8&pageNumber=2&reviewerType=all_reviews
+
+'''
 dataList=[]
-for page in range(1,501):
-
-    url=f'https://www.amazon.com/Logitech-G502-Performance-Gaming-Mouse/product-reviews/B07GBZ4Q68/ref=cm_cr_arp_d_paging_btm_{page}?ie=UTF8&pageNumber={page}&reviewerType=all_reviews'
+for page in range(1,numer_of_pages+1):
+    url=your_url
+    url=your_url.replace('Number=2',f'Number={page}')
+    url=url.replace('btm_2',f'btm_{page}')
     try:
 
         heading={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
